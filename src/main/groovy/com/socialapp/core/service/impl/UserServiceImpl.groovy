@@ -1,11 +1,11 @@
 package com.socialapp.core.service.impl
 
-import com.socialapp.core.domain.document.Comment
-import com.socialapp.core.domain.document.Like
 import com.socialapp.core.domain.document.Post
+import com.socialapp.core.domain.document.Subscription
 import com.socialapp.core.domain.document.User
 import com.socialapp.core.domain.dto.LoginDto
 import com.socialapp.core.domain.dto.PostDetailsDTO
+import com.socialapp.core.domain.dto.SubscriberPostsDto
 import com.socialapp.core.repository.PostRepository
 import com.socialapp.core.repository.UserRepository
 import com.socialapp.core.service.UserService
@@ -13,8 +13,11 @@ import com.socialapp.core.service.exception.BadCredentialsException
 import com.socialapp.core.service.exception.DuplicateEmailException
 import com.socialapp.core.service.exception.ResourceNotfoundException
 import groovy.util.logging.Slf4j
+import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
+
+import java.util.stream.Collectors
 
 @Slf4j
 @Service
@@ -98,6 +101,19 @@ class UserServiceImpl implements UserService {
 		PostDetailsDTO postDetails = new PostDetailsDTO();
 		postDetails.setPost(post)
 		return postDetails
+	}
 
+	@Override
+	List<SubscriberPostsDto> getSubscriberPosts(final String userId) {
+		final User user = userRepository.findById(userId)
+				.orElseThrow(() -> new ResourceNotfoundException("User wasn't found with id: " + userId))
+		List<SubscriberPostsDto> allPosts = user.getSubscriptions().stream()
+				.map(Subscription::getSubscriberId)
+				.map(subscriberId -> userRepository.findById(subscriberId).orElseThrow())
+				.flatMap(subscriber -> subscriber.getPosts().stream()
+						.map(post -> new SubscriberPostsDto(post.getPost(), subscriber.getId())))
+				.collect(Collectors.toList());
+
+		return allPosts
 	}
 }

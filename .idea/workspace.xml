@@ -4,8 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca061625-a766-4d6c-bd43-ae8d7f548143" name="Changes" comment="">
+    <list default="true" id="ca061625-a766-4d6c-bd43-ae8d7f548143" name="Changes" comment="fixed code">
+      <change afterPath="$PROJECT_DIR$/src/main/groovy/com/socialapp/core/domain/dto/SubscriberPostsDto.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a61e5a3e-076d-411b-8f30-c1c6ae6f22c3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a61e5a3e-076d-411b-8f30-c1c6ae6f22c3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/WiredTiger.turtle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/WiredTiger.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/_mdb_catalog.wt" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/_mdb_catalog.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/collection-146-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/collection-148-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/collection-150-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/collection-155-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/collection-157-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/collection-159-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/collection-2-3452429281093456768.wt" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/collection-2-3452429281093456768.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/collection-4-3452429281093456768.wt" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/collection-4-3452429281093456768.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-147-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-149-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-151-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-152-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-156-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-158-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-160-6203667032501308121.wt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-3-3452429281093456768.wt" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/index-3-3452429281093456768.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-5-3452429281093456768.wt" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/index-5-3452429281093456768.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/index-6-3452429281093456768.wt" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/index-6-3452429281093456768.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/journal/WiredTigerLog.0000000035" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/mongod.lock" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/mongod.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database-data/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/database-data/sizeStorer.wt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/spring.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/spring.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/socialapp/controller/UserController.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/socialapp/controller/UserController.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/socialapp/core/service/UserService.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/socialapp/core/service/UserService.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/groovy/com/socialapp/core/service/impl/UserServiceImpl.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/groovy/com/socialapp/core/service/impl/UserServiceImpl.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,13 +136,13 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SocialApp">
+  <component name="RunManager" selected="Gradle.SocialApp [build]">
     <configuration name="SocialApp [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -150,11 +181,10 @@
     </configuration>
     <configuration name="SocialApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" />
-      <envs>
-        <env name="GMAIL_USER_NAME" value="po1ak89" />
-        <env name="GMAIL_PASSWORD" value="zjjnzyrhgpfexhlq" />
-      </envs>
       <module name="SocialApp.main" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.socialapp.SocialApp" />
       <extension name="coverage">
         <pattern>
@@ -202,9 +232,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.SocialApp" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Gradle.SocialApp [build]" />
         <item itemvalue="Gradle.SocialApp [clean]" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.mongo-express: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -232,8 +262,31 @@
       <workItem from="1713541627947" duration="870000" />
       <workItem from="1713784990983" duration="18455000" />
       <workItem from="1713858955563" duration="36396000" />
-      <workItem from="1713944920381" duration="2345000" />
+      <workItem from="1713944920381" duration="10234000" />
+      <workItem from="1713958869284" duration="13433000" />
     </task>
+    <task id="LOCAL-00001" summary="fixed gitignore">
+      <created>1713950940991</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713950940991</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fixed gitignore">
+      <created>1713951347205</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713951347205</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixed code">
+      <created>1713953658599</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713953658599</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +302,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed gitignore" />
+    <MESSAGE value="fixed code" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed code" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -4,6 +4,7 @@ import com.socialapp.core.converter.DataConverter
 import com.socialapp.core.domain.document.User
 import com.socialapp.core.domain.dto.LoginDto
 import com.socialapp.core.domain.dto.PostDetailsDTO
+import com.socialapp.core.domain.dto.SubscriberPostsDto
 import com.socialapp.core.domain.dto.UserDto
 import com.socialapp.core.service.UserService
 import groovy.util.logging.Slf4j
@@ -64,8 +65,18 @@ class UserController {
 	}
 
 	@GetMapping("/feeds/{postId}")
+	@Operation(summary = "Get a user's feed including likes and comments")
 	ResponseEntity<PostDetailsDTO> getUserFeed(@PathVariable("postId") final String postId) {
 		PostDetailsDTO postDetails = userService.getPostDetailsByUserIdAndPostId(postId);
+		log.info("In getUserFeed successful got a user's feed including likes and comments of postId: [{}]", postId)
 		return new ResponseEntity<>(postDetails, HttpStatus.OK)
+	}
+
+	@GetMapping("/subscriber_p/osts{userId}")
+	@Operation(summary = "Subscriber's feed will receive posts from the user to whom he/she subscribed)")
+	ResponseEntity<SubscriberPostsDto> getSubscriberPosts(@PathVariable("userId") final String userId){
+		final List<SubscriberPostsDto> subscriberPosts = userService.getSubscriberPosts(userId)
+		log.info("In getSubscriberPosts successful got subscriber posts of userId: [{}]", userId)
+		return new ResponseEntity<SubscriberPostsDto>(subscriberPosts, HttpStatus.OK)
 	}
 }
