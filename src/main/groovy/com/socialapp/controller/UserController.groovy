@@ -22,7 +22,10 @@ class UserController {
 
 	private final UserService userService
 
-	UserController(final DataConverter<User, UserDto> converter, final UserService userService) {
+	UserController(
+			final DataConverter<User, UserDto> converter,
+			final UserService userService
+	) {
 		this.converter = converter
 		this.userService = userService
 	}
@@ -61,8 +64,7 @@ class UserController {
 	}
 
 	@GetMapping("/feeds/{postId}")
-	ResponseEntity<PostDetailsDTO> getUserFeed(
-			@PathVariable("postId") final String postId) {
+	ResponseEntity<PostDetailsDTO> getUserFeed(@PathVariable("postId") final String postId) {
 		PostDetailsDTO postDetails = userService.getPostDetailsByUserIdAndPostId(postId);
 		return new ResponseEntity<>(postDetails, HttpStatus.OK)
 	}

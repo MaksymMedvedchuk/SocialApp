@@ -29,7 +29,8 @@ class UserServiceImpl implements UserService {
 	UserServiceImpl(
 			final BCryptPasswordEncoder passwordEncoder,
 			final UserRepository userRepository,
-			final PostRepository postRepository) {
+			final PostRepository postRepository
+	) {
 		this.passwordEncoder = passwordEncoder
 		this.userRepository = userRepository
 		this.postRepository = postRepository
@@ -69,12 +70,12 @@ class UserServiceImpl implements UserService {
 
 		if (unregistered || wrongPassword) {
 			if (wrongPassword) {
-				log.warn("Passwords don't match for email: [{}]", loginDto.getPassword());
+				log.warn("Passwords don't match for email: [{}]", loginDto.getPassword())
 			}
 			if (unregistered) {
-				log.warn("User doesn't register for email: [{}]", loginDto.getEmail());
+				log.warn("User doesn't register for email: [{}]", loginDto.getEmail())
 			}
-			throw new BadCredentialsException("Invalid password or unregistered user");
+			throw new BadCredentialsException("Invalid password or unregistered user")
 		}
 		log.debug("In loginUser trying to login user with userName: [{}]", user.getUserName())
 		user.setIsLogin(true)
@@ -95,7 +96,7 @@ class UserServiceImpl implements UserService {
 		final Post post = postRepository.findById(postId)
 				.orElseThrow(() -> new ResourceNotfoundException("Post wasn't found with id: " + postId))
 		PostDetailsDTO postDetails = new PostDetailsDTO();
-		postDetails.setPost(post);
+		postDetails.setPost(post)
 		return postDetails
 
 	}

@@ -9,7 +9,4 @@ interface PostService {
 	Post updatedPost(Post post)
 
 	void deletePost(String postId)
-
-
-
 }

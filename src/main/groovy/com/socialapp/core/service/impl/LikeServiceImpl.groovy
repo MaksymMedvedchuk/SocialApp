@@ -17,7 +17,10 @@ class LikeServiceImpl implements LikeService {
 
 	private final LikeRepository likeRepository
 
-	LikeServiceImpl(final LikeRepository likeRepository, final PostRepository postRepository) {
+	LikeServiceImpl(
+			final LikeRepository likeRepository,
+			final PostRepository postRepository
+	) {
 		this.likeRepository = likeRepository
 		this.postRepository = postRepository
 	}

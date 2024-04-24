@@ -43,7 +43,7 @@ class CommentController {
 			@RequestParam("postId") final String postId) {
 		final Comment comment = converter.convertToDocument(commentDto)
 		final Comment savedComment = commentService.saveCommentToPost(comment, userId, postId)
-		log.info("In saveComment successful save comment for userId: [{}]", comment.getUserId());
+		log.info("In saveComment successful save comment for userId: [{}]", comment.getUserId())
 		return new ResponseEntity<>(converter.convertToDto(savedComment), HttpStatus.OK)
 	}
 
@@ -54,7 +54,7 @@ class CommentController {
 			@RequestParam(defaultValue = "25", name = "limit") final Integer limit) {
 		Page<Comment> commentPage = commentService.getCommentPageByPostId(postId, page, limit)
 		CommentPage<CommentDto> dtoCommentPage = pageDataConverter.convertToPage(commentPage)
-		log.debug("In getAllCommentsByPostId get all comments for postId: [{}]", postId);
-		return new ResponseEntity<>(dtoCommentPage, HttpStatus.FOUND);
+		log.debug("In getAllCommentsByPostId get all comments for postId: [{}]", postId)
+		return new ResponseEntity<>(dtoCommentPage, HttpStatus.OK);
 	}
 }

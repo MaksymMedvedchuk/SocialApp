@@ -21,12 +21,12 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(DuplicateEmailException.class)
 	ResponseEntity<String> handleDuplicateEmailException(DuplicateEmailException ex) {
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage())
 	}
 
 	@ExceptionHandler(ResourceNotfoundException.class)
 	ResponseEntity<String> handleDuplicateEmailException(ResourceNotfoundException ex) {
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage())
 	}
 
 	@ExceptionHandler(MongoWriteException.class)
@@ -47,6 +47,6 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 				.map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
 				.collect(Collectors.toList())
 
-		return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST)
 	}
 }

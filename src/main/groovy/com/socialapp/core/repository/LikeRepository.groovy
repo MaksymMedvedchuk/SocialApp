@@ -8,6 +8,4 @@ interface LikeRepository extends MongoRepository<Like, String> {
 
 	@Query("{ 'userId' : ?0, 'postId' : ?1 }")
 	Like findLikeByUserAndPostId(String userId, String postId)
-
-
 }

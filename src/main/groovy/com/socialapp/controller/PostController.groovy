@@ -20,15 +20,18 @@ class PostController {
 
 	private final PostService postService
 
-	PostController(final DataConverter<Post, PostDto> converter, final PostService postService) {
+	PostController(
+			final DataConverter<Post, PostDto> converter,
+			final PostService postService) {
 		this.converter = converter
 		this.postService = postService
 	}
 
 	@PostMapping("/save/{userId}")
 	@Operation(summary = "Save new post to user")
-	ResponseEntity<PostDto> savePost(@RequestBody @Valid final PostDto postDto,
-									 @PathVariable("userId") final String userId) {
+	ResponseEntity<PostDto> savePost(
+			@RequestBody @Valid final PostDto postDto,
+			@PathVariable("userId") final String userId) {
 		final Post post = converter.convertToDocument(postDto)
 		final Post savedPost = postService.savePostToUser(post, userId)
 		log.info("In savePost successful save post for userId: [{}]", post.getUserId());
@@ -37,8 +40,9 @@ class PostController {
 
 	@PostMapping("/edit/{postId}")
 	@Operation(summary = "Edit post")
-	ResponseEntity<PostDto> editPost(@RequestBody @Valid final PostDto postDto,
-									 @PathVariable("postId") final String postId) {
+	ResponseEntity<PostDto> editPost(
+			@RequestBody @Valid final PostDto postDto,
+			@PathVariable("postId") final String postId) {
 		final Post post = converter.convertToDocument(postDto)
 		post.setId(postId)
 		final Post updatedPost = postService.updatedPost(post)
@@ -48,7 +52,7 @@ class PostController {
 
 	@DeleteMapping("delete/{postId}")
 	@Operation(summary = "Delete post")
-	ResponseEntity<String> deletePost(@PathVariable("postId") final String postId){
+	ResponseEntity<String> deletePost(@PathVariable("postId") final String postId) {
 		postService.deletePost(postId)
 		log.info("In deletePost successful delete post for postId: [{}]", postId)
 		return new ResponseEntity<>("Delete successful", HttpStatus.OK)

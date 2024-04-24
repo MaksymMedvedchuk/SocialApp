@@ -1,6 +1,6 @@
 package com.socialapp.core.service
 
-import com.socialapp.core.domain.document.Post
+
 import com.socialapp.core.domain.document.User
 import com.socialapp.core.domain.dto.LoginDto
 import com.socialapp.core.domain.dto.PostDetailsDTO

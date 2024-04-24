@@ -23,7 +23,10 @@ class CommentServiceImpl implements CommentService {
 
 	private static final Integer PAGE = 1
 
-	CommentServiceImpl(final CommentRepository commentRepository, final PostRepository postRepository) {
+	CommentServiceImpl(
+			final CommentRepository commentRepository,
+			final PostRepository postRepository
+	) {
 		this.commentRepository = commentRepository
 		this.postRepository = postRepository
 	}

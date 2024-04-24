@@ -17,7 +17,10 @@ class SubscriptionServiceImpl implements SubscriptionService {
 
 	private final UserRepository userRepository
 
-	SubscriptionServiceImpl(final SubscriptionRepository subscriptionRepository, final UserRepository userRepository) {
+	SubscriptionServiceImpl(
+			final SubscriptionRepository subscriptionRepository,
+			final UserRepository userRepository
+	) {
 		this.subscriptionRepository = subscriptionRepository
 		this.userRepository = userRepository
 	}

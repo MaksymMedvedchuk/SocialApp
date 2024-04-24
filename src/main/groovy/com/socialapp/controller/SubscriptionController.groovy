@@ -20,16 +20,20 @@ class SubscriptionController {
 
 	private final NotificationService notificationService
 
-	SubscriptionController(final SubscriptionService subscriptionService, final NotificationService notificationService) {
+	SubscriptionController(
+			final SubscriptionService subscriptionService,
+			final NotificationService notificationService
+	) {
 		this.subscriptionService = subscriptionService
 		this.notificationService = notificationService
 	}
 
 	@PostMapping("/subscribeOrUnsubscribe")
 	@Operation(summary = "If isSubscription is try the user will subscribes, if boolean is false the user will unsubscribes")
-	ResponseEntity<String> subscribeOrUnsubscribe(@RequestParam("isSubscription") final Boolean isSubscription,
-												  @RequestParam("userId") final String userId,
-												  @RequestParam("subscriberId") final String subscriberId) {
+	ResponseEntity<String> subscribeOrUnsubscribe(
+			@RequestParam("isSubscription") final Boolean isSubscription,
+			@RequestParam("userId") final String userId,
+			@RequestParam("subscriberId") final String subscriberId) {
 		if (isSubscription == true) {
 			subscriptionService.subscribe(userId, subscriberId)
 			log.info("In subscribeOrUnsubscribe user with id [{}] subscribed to user with id: [{}]", subscriberId, userId)

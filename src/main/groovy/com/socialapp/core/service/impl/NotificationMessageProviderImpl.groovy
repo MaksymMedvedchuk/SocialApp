@@ -26,7 +26,8 @@ class NotificationMessageProviderImpl implements NotificationService {
 	NotificationMessageProviderImpl(
 			final UserRepository userRepository,
 			final MimeMessageHelper mimeMessageHelper,
-			final JavaMailSender javaMailSender) {
+			final JavaMailSender javaMailSender
+	) {
 		this.userRepository = userRepository
 		this.mimeMessageHelper = mimeMessageHelper
 		this.javaMailSender = javaMailSender

@@ -23,10 +23,12 @@ class PostServiceImpl implements PostService {
 
 	private final CommentRepository commentRepository
 
-	PostServiceImpl(final PostRepository postRepository,
+	PostServiceImpl(
+			final PostRepository postRepository,
 					final UserRepository userRepository,
 					final CommentRepository commentRepository,
-					final LikeRepository likeRepository) {
+					final LikeRepository likeRepository
+	) {
 		this.postRepository = postRepository
 		this.userRepository = userRepository
 		this.commentRepository = commentRepository
