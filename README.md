@@ -11,7 +11,6 @@ Queries
 - Create a post
 - Editing a post
 - Deleting a post
-- Leave/delete a post favorite
 - Subscription to a user (the subscriber's feed will receive posts from the user to whom he/she subscribed)
 - Unsubscribe from a user
 - Commenting on a post
