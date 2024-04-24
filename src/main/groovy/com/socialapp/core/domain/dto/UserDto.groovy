@@ -1,49 +1,23 @@
 package com.socialapp.core.domain.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import groovy.transform.Canonical
+import com.socialapp.core.domain.document.Post
+import groovy.transform.builder.Builder
 import jakarta.validation.constraints.Email
-import org.springframework.data.mongodb.core.index.Indexed
 
-@Canonical
+@Builder
 class UserDto {
 
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
-	private String id
-	private String userName
+	String id
+	String userName
 	@Email
-	private String email
-	private String password
-
-	String getId() {
-		return id
-	}
-
-	void setId(final String id) {
-		this.id = id
-	}
-
-	String getUserName() {
-		return userName
-	}
-
-	void setUserName(final String userName) {
-		this.userName = userName
-	}
-
-	String getEmail() {
-		return email
-	}
-
-	void setEmail(final String email) {
-		this.email = email
-	}
-
-	String getPassword() {
-		return password
-	}
-
-	void setPassword(final String password) {
-		this.password = password
-	}
+	String email
+	String password
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	boolean isRegister
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	boolean isLogin
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	List<Post> posts
 }

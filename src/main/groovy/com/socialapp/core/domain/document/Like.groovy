@@ -1,5 +1,6 @@
 package com.socialapp.core.domain.document
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
@@ -7,9 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document
 class Like {
 
 	@Id
-	private String id
-	private String userId
-	private String postId
-
-
+	String id
+	String userId
+	String postId
+	boolean IsLike
 }

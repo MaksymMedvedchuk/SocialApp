@@ -8,14 +8,11 @@ import org.springframework.data.mongodb.core.mapping.Document
 class Post {
 
 	@Id
-	private String id
-	private String userId
-	private String post
+	String id
+	String userId
+	String post
 	@DBRef
-	private List<Comment> comments;
+	List<Comment> comments
 	@DBRef
-	private List<Like> likes;
-
-
-
+	List<Like> likes
 }

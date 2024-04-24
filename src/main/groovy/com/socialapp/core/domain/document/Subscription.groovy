@@ -1,13 +1,16 @@
 package com.socialapp.core.domain.document
 
+import groovy.transform.builder.Builder
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document(collection = "Subscriptions")
+@Builder
+@Document(collection = "subscriptions")
 class Subscription {
 
 	@Id
-	private String id
-	private String targetUser
-	private String subscriber
+	String id
+	String userId
+	String subscriberId
+	boolean isSubscription
 }

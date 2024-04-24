@@ -7,11 +7,11 @@ import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Component
 
 @Component
-class UserDataDataConverter implements DataConverter<User, UserDto> {
+class UserDataConverter implements DataConverter<User, UserDto> {
 
 	private final ModelMapper modelMapper
 
-	UserDataDataConverter(final ModelMapper modelMapper) {
+	UserDataConverter(final ModelMapper modelMapper) {
 		this.modelMapper = modelMapper
 	}
 

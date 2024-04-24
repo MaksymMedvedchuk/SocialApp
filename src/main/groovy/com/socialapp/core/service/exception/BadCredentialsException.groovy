@@ -1,4 +1,7 @@
 package com.socialapp.core.service.exception
 
-class BadCredentialsException {
+class BadCredentialsException extends RuntimeException{
+	BadCredentialsException(final String message) {
+		super(message)
+	}
 }

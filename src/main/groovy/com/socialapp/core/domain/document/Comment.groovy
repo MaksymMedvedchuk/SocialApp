@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document
 class Comment {
 
 	@Id
-	private String id
-	private String userId
-	private String postId
-	private String comment
+	String id
+	String userId
+	String postId
+	String comment
 }

@@ -1,11 +1,9 @@
 package com.socialapp.core.converter
 
-interface Converter<D, DTO> {
+interface DataConverter<D, DTO> {
 
-	DTO convertToDto(D document);
+	DTO convertToDto(D document)
 
-	//boolean isSupport(Class<?> documentClass, Class<?> dtoClass);
-
-	D convertToDocument(DTO dto);
+	D convertToDocument(DTO dto)
 
 }

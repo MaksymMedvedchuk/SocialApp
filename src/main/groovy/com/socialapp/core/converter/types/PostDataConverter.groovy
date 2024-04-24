@@ -7,11 +7,11 @@ import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Component
 
 @Component
-class PostDataDataConverter implements DataConverter<Post, PostDto>{
+class PostDataConverter implements DataConverter<Post, PostDto>{
 
 	private final ModelMapper modelMapper
 
-	PostDataDataConverter(final ModelMapper modelMapper) {
+	PostDataConverter(final ModelMapper modelMapper) {
 		this.modelMapper = modelMapper
 	}
 

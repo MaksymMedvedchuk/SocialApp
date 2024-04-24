@@ -1,5 +1,15 @@
 package com.socialapp.core.service
 
-interface PostRepository {
+import com.socialapp.core.domain.document.Post
+
+interface PostService {
+
+	Post savePostToUser(Post post, String userId)
+
+	Post updatedPost(Post post)
+
+	void deletePost(String postId)
+
+
 
 }

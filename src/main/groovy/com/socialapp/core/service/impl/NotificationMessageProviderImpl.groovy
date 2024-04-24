@@ -1,7 +1,8 @@
-package com.socialapp.core.service
+package com.socialapp.core.service.impl
 
 import com.socialapp.core.domain.document.User
 import com.socialapp.core.repository.UserRepository
+import com.socialapp.core.service.NotificationService
 import groovy.util.logging.Slf4j
 import jakarta.mail.MessagingException
 import org.springframework.mail.javamail.JavaMailSender
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component
 
 @Slf4j
 @Component
-class NotificationMessageProvider {
+class NotificationMessageProviderImpl implements NotificationService {
 
 	private final UserRepository userRepository
 
@@ -22,7 +23,7 @@ class NotificationMessageProvider {
 
 	private static final String SENDER_NAME = "SocialApp"
 
-	NotificationMessageProvider(
+	NotificationMessageProviderImpl(
 			final UserRepository userRepository,
 			final MimeMessageHelper mimeMessageHelper,
 			final JavaMailSender javaMailSender) {
@@ -37,15 +38,15 @@ class NotificationMessageProvider {
 		final String subject = "Subscription notification"
 		final String toAddress = targetUser.getEmail()
 		final String content = "<html><body>" +
-				"<p>Dear " + subscriber.getUserName() + ",</p>" +
-				"<p>Subscribed to your page</p>" + "</body></html>"
+				"<p>User with name " + subscriber.getUserName() + ",</p>" +
+				"<p>subscribed to your page</p>" + "</body></html>"
 		try {
 			mimeMessageHelper.setFrom(FROM_ADDRESS, SENDER_NAME)
 			mimeMessageHelper.setSubject(subject)
 			mimeMessageHelper.setTo(toAddress)
 			mimeMessageHelper.setText(content, true)
 		} catch (MessagingException e) {
-			log.warn("In createNotificationMessage exception: [{}]", e.getMessage());
+			log.warn("In createNotificationMessage exception: [{}]", e.getMessage())
 		}
 	}
 

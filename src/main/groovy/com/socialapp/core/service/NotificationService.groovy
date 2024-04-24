@@ -1,4 +1,6 @@
 package com.socialapp.core.service
 
-class NotificationService {
+interface NotificationService {
+
+	void sendNotification(String userId, String subscriberId)
 }

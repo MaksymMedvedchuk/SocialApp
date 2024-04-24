@@ -1,4 +1,10 @@
 package com.socialapp.core.domain.dto
 
-class CustomPage {
+class CommentPage<CommentDto> {
+
+	List<CommentDto> dto;
+	int currentPage;
+	long totalItems;
+	int totalPages;
+	int itemsPerPage;
 }

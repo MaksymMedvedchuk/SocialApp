@@ -1,7 +1,19 @@
-package com.socialapp.core.domain.service
+package com.socialapp.core.service
+
+import com.socialapp.core.domain.document.Post
+import com.socialapp.core.domain.document.User
+import com.socialapp.core.domain.dto.LoginDto
+import com.socialapp.core.domain.dto.PostDetailsDTO
 
 interface UserService {
 
-	com.socialapp.core.domain.document.User createUser(com.socialapp.core.domain.document.User user)
+	User createUser(User user)
 
+	void deleteUser(String userId)
+
+	void loginUser(LoginDto loginDto)
+
+	void logoutUser(String userId)
+
+	PostDetailsDTO getPostDetailsByUserIdAndPostId(String postId)
 }
