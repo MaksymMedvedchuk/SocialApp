@@ -19,9 +19,16 @@ Queries
 - Get post comments
 - Likes can be left and deleted
 
+Installation and launch instructions:
+1. Clone the repository - git clone https://github.com/MaksymMedvedchuk/SocialApp.git
+2. Make clean and build project - ./gradlew clean build
+3. Run docker-compose file - docker-compose up
+4. Create DB via Mongo Express(admin, pass) - http://localhost:8081/
+5. Run SocialApp file
+
 SWAGGER UI
 -
-http://localhost:8008/swagger-ui/index.html#/
+http://localhost:8080/swagger-ui/index.html#/
 
 MONGO EXPRESS
 -
