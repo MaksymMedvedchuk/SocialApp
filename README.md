@@ -35,4 +35,5 @@ MONGO EXPRESS
 http://localhost:8081
 
 Stack:
+-
 Groovy, Spring(Boor, Data, Security), MongoDB, REST API, JUnit, Spock
