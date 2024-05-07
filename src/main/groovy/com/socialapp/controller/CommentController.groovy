@@ -10,6 +10,8 @@ import groovy.util.logging.Slf4j
 import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.Valid
 import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -36,24 +38,25 @@ class CommentController {
 	}
 
 	@PostMapping("/save")
-	@Operation(summary = "Save comment to post")
+	@Operation(summary = "Commenting on a post")
 	ResponseEntity<CommentDto> saveComment(
 			@RequestBody @Valid final CommentDto commentDto,
 			@RequestParam("userId") final String userId,
 			@RequestParam("postId") final String postId) {
 		final Comment comment = converter.convertToDocument(commentDto)
 		final Comment savedComment = commentService.saveCommentToPost(comment, userId, postId)
+		final CommentDto result = converter.convertToDto(savedComment)
 		log.info("In saveComment successful save comment for userId: [{}]", comment.getUserId())
-		return new ResponseEntity<>(converter.convertToDto(savedComment), HttpStatus.OK)
+		return new ResponseEntity<>(result, HttpStatus.OK)
 	}
 
 	@GetMapping("/comments/{postId}")
+	@Operation(summary = "Get post comments")
 	ResponseEntity<CommentPage<CommentDto>> getAllCommentsByPostId(
 			@PathVariable("postId") final String postId,
-			@RequestParam(defaultValue = "1", name = "page") final Integer page,
-			@RequestParam(defaultValue = "25", name = "limit") final Integer limit) {
-		Page<Comment> commentPage = commentService.getCommentPageByPostId(postId, page, limit)
-		CommentPage<CommentDto> dtoCommentPage = pageDataConverter.convertToPage(commentPage)
+			@PageableDefault final Pageable pageable) {
+		final Page<Comment> commentPage = commentService.getCommentPageByPostId(postId, pageable)
+		final CommentPage<CommentDto> dtoCommentPage = pageDataConverter.convertToPage(commentPage)
 		log.debug("In getAllCommentsByPostId get all comments for postId: [{}]", postId)
 		return new ResponseEntity<>(dtoCommentPage, HttpStatus.OK);
 	}

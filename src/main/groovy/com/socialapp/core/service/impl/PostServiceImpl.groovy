@@ -50,7 +50,7 @@ class PostServiceImpl implements PostService {
 				.orElseThrow(() -> new ResourceNotfoundException("Post wasn't found with id: " + postId))
 		postRepository.deleteById(postId)
 		final User user = userRepository.findById(post.getUserId())
-				.orElseThrow(() -> new ResourceNotfoundException("User wasn't found with id: " + userId))
+				.orElseThrow(() -> new ResourceNotfoundException("User wasn't found with id: " + post.getUserId()))
 		List<Post> posts = user.getPosts()
 		posts.remove(postId)
 		commentRepository.deleteAll(post.getComments())

@@ -1,22 +1,21 @@
 version: '3.8'
 services:
   mongodb:
-    image: mongo:latest # use the latest image.
+    image: mongo:latest
     container_name: mongodb
     restart: unless-stopped
-    environment: # set required env variables to access mongo
+    environment:
        MONGO_INITRD_ROOT_USERNAME: user
        MONGO_INITRD_ROOT_PASSWORD: secret
     ports:
       - 27018:27017
     expose:
       - "27018"
-    volumes: # optional to preserve database after container is deleted.
+    volumes:
       - ./database-data:/data/db
 
-  # Mongo Express Service
   mongo-express:
-    image: mongo-express:latest # latest image
+    image: mongo-express:latest
     container_name: mongo-express
     restart: unless-stopped
     ports:

@@ -29,7 +29,7 @@ class SubscriptionController {
 	}
 
 	@PostMapping("/subscribeOrUnsubscribe")
-	@Operation(summary = "If isSubscription is try the user will subscribes, if boolean is false the user will unsubscribes")
+	@Operation(summary = "If isSubscription is true the user will subscribes, if isSubscription is false the user will unsubscribes")
 	ResponseEntity<String> subscribeOrUnsubscribe(
 			@RequestParam("isSubscription") final Boolean isSubscription,
 			@RequestParam("userId") final String userId,

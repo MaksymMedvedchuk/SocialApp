@@ -1,7 +1,9 @@
 package com.socialapp.controller.exceptionhandler
 
 import com.mongodb.MongoWriteException
+import com.socialapp.core.service.exception.BadCredentialsException
 import com.socialapp.core.service.exception.DuplicateEmailException
+import com.socialapp.core.service.exception.PasswordEmptyOrNullException
 import com.socialapp.core.service.exception.ResourceNotfoundException
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -25,13 +27,23 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(ResourceNotfoundException.class)
-	ResponseEntity<String> handleDuplicateEmailException(ResourceNotfoundException ex) {
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage())
+	ResponseEntity<String> handleResourceNotfoundException(ResourceNotfoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage())
 	}
 
 	@ExceptionHandler(MongoWriteException.class)
-	ResponseEntity<String> handleDuplicateEmailException(MongoWriteException ex) {
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getError().getMessage());
+	ResponseEntity<String> handleMongoWriteException(MongoWriteException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getError().getMessage())
+	}
+
+	@ExceptionHandler(PasswordEmptyOrNullException.class)
+	ResponseEntity<String> handlePasswordEmptyOrNullException(PasswordEmptyOrNullException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage())
+	}
+
+	@ExceptionHandler(BadCredentialsException.class)
+	ResponseEntity<String> handleBadCredentialsException(BadCredentialsException ex) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage())
 	}
 
 	@Override
@@ -42,11 +54,10 @@ class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 			final WebRequest request
 	) {
 		BindingResult bindingResult = ex.getBindingResult();
-		List<String> errorMessages = bindingResult.getFieldErrors()
+		List<String> errors = bindingResult.getFieldErrors()
 				.stream()
 				.map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
 				.collect(Collectors.toList())
-
-		return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST)
+		return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST)
 	}
 }

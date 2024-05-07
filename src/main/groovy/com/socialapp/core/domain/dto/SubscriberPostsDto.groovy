@@ -9,4 +9,7 @@ class SubscriberPostsDto {
 		this.post = post
 		this.userId = userId
 	}
+
+	SubscriberPostsDto() {
+	}
 }

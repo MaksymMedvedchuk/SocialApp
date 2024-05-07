@@ -21,8 +21,6 @@ class CommentServiceImpl implements CommentService {
 
 	private final CommentRepository commentRepository
 
-	private static final Integer PAGE = 1
-
 	CommentServiceImpl(
 			final CommentRepository commentRepository,
 			final PostRepository postRepository
@@ -48,9 +46,9 @@ class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	Page<Comment> getCommentPageByPostId(final String postId, final Integer page, final Integer limit) {
-		Pageable pageable = PageRequest.of(page - PAGE, limit)
+	Page<Comment> getCommentPageByPostId(final String postId, final Pageable pageable) {
+		Pageable result = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize())
 		log.debug("In getCommentPageByPostId found all comments for postId: [{}]", postId)
-		return commentRepository.findCommentsByPostId(postId, pageable)
+		return commentRepository.findCommentsByPostId(postId, result)
 	}
 }

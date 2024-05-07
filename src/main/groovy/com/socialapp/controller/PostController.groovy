@@ -28,14 +28,15 @@ class PostController {
 	}
 
 	@PostMapping("/save/{userId}")
-	@Operation(summary = "Save new post to user")
+	@Operation(summary = "Create a post")
 	ResponseEntity<PostDto> savePost(
 			@RequestBody @Valid final PostDto postDto,
 			@PathVariable("userId") final String userId) {
 		final Post post = converter.convertToDocument(postDto)
 		final Post savedPost = postService.savePostToUser(post, userId)
+		final PostDto result = converter.convertToDto(savedPost)
 		log.info("In savePost successful save post for userId: [{}]", post.getUserId());
-		return new ResponseEntity<>(converter.convertToDto(savedPost), HttpStatus.OK)
+		return new ResponseEntity<>(result, HttpStatus.CREATED)
 	}
 
 	@PostMapping("/edit/{postId}")
@@ -46,8 +47,9 @@ class PostController {
 		final Post post = converter.convertToDocument(postDto)
 		post.setId(postId)
 		final Post updatedPost = postService.updatedPost(post)
+		final PostDto result = converter.convertToDto(updatedPost)
 		log.info("In editPost successful update post for postId: [{}]", post.getId());
-		return new ResponseEntity<>(converter.convertToDto(updatedPost), HttpStatus.OK)
+		return new ResponseEntity<>(result, HttpStatus.OK)
 	}
 
 	@DeleteMapping("delete/{postId}")

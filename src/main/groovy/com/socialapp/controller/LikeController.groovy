@@ -23,7 +23,7 @@ class LikeController {
 	}
 
 	@PostMapping("/saveOrDelete")
-	@Operation(summary = "If boolean is try like will add to post, if boolean is false like will delete from post")
+	@Operation(summary = "If isLike is true like will add to post, if isLike is false like will delete from post")
 	ResponseEntity<String> likeOrDislike(
 			@RequestParam("isLike") final Boolean isLike,
 			@RequestParam("userId") final String userId,

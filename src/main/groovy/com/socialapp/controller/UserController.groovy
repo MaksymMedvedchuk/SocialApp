@@ -3,7 +3,7 @@ package com.socialapp.controller
 import com.socialapp.core.converter.DataConverter
 import com.socialapp.core.domain.document.User
 import com.socialapp.core.domain.dto.LoginDto
-import com.socialapp.core.domain.dto.PostDetailsDTO
+import com.socialapp.core.domain.dto.PostDetailsDto
 import com.socialapp.core.domain.dto.SubscriberPostsDto
 import com.socialapp.core.domain.dto.UserDto
 import com.socialapp.core.service.UserService
@@ -32,7 +32,7 @@ class UserController {
 	}
 
 	@PostMapping("/register")
-	@Operation(summary = "Register new user")
+	@Operation(summary = "Register user")
 	ResponseEntity<UserDto> registerUser(@RequestBody @Valid final UserDto userDto) {
 		final User user = converter.convertToDocument(userDto)
 		final User savedUser = userService.createUser(user)
@@ -41,10 +41,10 @@ class UserController {
 	}
 
 	@DeleteMapping("/delete/{userId}")
-	@Operation(summary = "Delete user by id")
+	@Operation(summary = "Delete a user")
 	ResponseEntity<String> deleteUser(@PathVariable("userId") final String userId) {
 		userService.deleteUser(userId)
-		log.info("In deleteUser successful delete user with email: [{}]", userId);
+		log.info("In deleteUser successful delete user with email: [{}]", userId)
 		return new ResponseEntity<>("Delete successful", HttpStatus.OK)
 	}
 
@@ -66,17 +66,17 @@ class UserController {
 
 	@GetMapping("/feeds/{postId}")
 	@Operation(summary = "Get a user's feed including likes and comments")
-	ResponseEntity<PostDetailsDTO> getUserFeed(@PathVariable("postId") final String postId) {
-		PostDetailsDTO postDetails = userService.getPostDetailsByUserIdAndPostId(postId);
+	ResponseEntity<PostDetailsDto> getUserFeed(@PathVariable("postId") final String postId) {
+		PostDetailsDto postDetails = userService.getPostDetailsByPostId(postId);
 		log.info("In getUserFeed successful got a user's feed including likes and comments of postId: [{}]", postId)
 		return new ResponseEntity<>(postDetails, HttpStatus.OK)
 	}
 
-	@GetMapping("/subscriber_p/osts{userId}")
-	@Operation(summary = "Subscriber's feed will receive posts from the user to whom he/she subscribed)")
-	ResponseEntity<SubscriberPostsDto> getSubscriberPosts(@PathVariable("userId") final String userId){
+	@GetMapping("/subscriber_posts{userId}")
+	@Operation(summary = "Subscriber's feed will receive posts from the user to whom he/she subscribed")
+	ResponseEntity<List<SubscriberPostsDto>> getSubscriberPosts(@PathVariable("userId") final String userId){
 		final List<SubscriberPostsDto> subscriberPosts = userService.getSubscriberPosts(userId)
 		log.info("In getSubscriberPosts successful got subscriber posts of userId: [{}]", userId)
-		return new ResponseEntity<SubscriberPostsDto>(subscriberPosts, HttpStatus.OK)
+		return new ResponseEntity<List<SubscriberPostsDto>>(subscriberPosts, HttpStatus.OK)
 	}
 }

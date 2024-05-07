@@ -30,15 +30,20 @@ class LikeServiceImpl implements LikeService {
 				.orElseThrow(() -> new ResourceNotfoundException("Post wasn't found with id: " + postId))
 		List<Like> likes = post.getLikes()
 		if (likes == null) likes = new ArrayList<>()
-		final Like like = new Like()
-		like.setIsLike(true)
-		like.setPostId(postId)
-		like.setUserId(userId)
+		Like like = createLike(postId, userId)
 		likeRepository.insert(like)
 		likes.add(like)
 		post.setLikes(likes)
 		postRepository.save(post)
 		log.debug("In saveLike saved like with id [{}] to post with id [{}]", like.getId(), postId)
+	}
+
+	private Like createLike(String postId, String userId) {
+		final Like like = new Like()
+		like.setIsLike(true)
+		like.setPostId(postId)
+		like.setUserId(userId)
+		return like
 	}
 
 	void deleteLike(final String userId, final String postId) {

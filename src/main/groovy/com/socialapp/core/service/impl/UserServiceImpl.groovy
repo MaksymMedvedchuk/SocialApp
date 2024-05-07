@@ -4,16 +4,16 @@ import com.socialapp.core.domain.document.Post
 import com.socialapp.core.domain.document.Subscription
 import com.socialapp.core.domain.document.User
 import com.socialapp.core.domain.dto.LoginDto
-import com.socialapp.core.domain.dto.PostDetailsDTO
+import com.socialapp.core.domain.dto.PostDetailsDto
 import com.socialapp.core.domain.dto.SubscriberPostsDto
 import com.socialapp.core.repository.PostRepository
 import com.socialapp.core.repository.UserRepository
 import com.socialapp.core.service.UserService
 import com.socialapp.core.service.exception.BadCredentialsException
 import com.socialapp.core.service.exception.DuplicateEmailException
+import com.socialapp.core.service.exception.PasswordEmptyOrNullException
 import com.socialapp.core.service.exception.ResourceNotfoundException
 import groovy.util.logging.Slf4j
-import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -45,9 +45,9 @@ class UserServiceImpl implements UserService {
 		if (userRepository.findByEmail(email).isPresent()) {
 			throw new DuplicateEmailException("User with email already exists: " + email)
 		}
-		if (user.getPassword() != null) {
+		if (user.getPassword() != null && user.getPassword() != "") {
 			user.setPassword(passwordEncoder.encode(user.getPassword()))
-		}
+		} else throw new PasswordEmptyOrNullException("Password can not be empty/null for user ith email: " + user.getEmail())
 		log.debug("In createUser trying save user with userName: [{}]", user.getUserName())
 		user.setIsRegister(true)
 		user.setIsLogin(false)
@@ -95,10 +95,10 @@ class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	PostDetailsDTO getPostDetailsByUserIdAndPostId(final String postId) {
+	PostDetailsDto getPostDetailsByPostId(final String postId) {
 		final Post post = postRepository.findById(postId)
 				.orElseThrow(() -> new ResourceNotfoundException("Post wasn't found with id: " + postId))
-		PostDetailsDTO postDetails = new PostDetailsDTO();
+		PostDetailsDto postDetails = new PostDetailsDto();
 		postDetails.setPost(post)
 		return postDetails
 	}
@@ -109,11 +109,10 @@ class UserServiceImpl implements UserService {
 				.orElseThrow(() -> new ResourceNotfoundException("User wasn't found with id: " + userId))
 		List<SubscriberPostsDto> allPosts = user.getSubscriptions().stream()
 				.map(Subscription::getSubscriberId)
-				.map(subscriberId -> userRepository.findById(subscriberId).orElseThrow())
+				.map(subscriberId -> userRepository.findById(subscriberId).orElseThrow(() -> new ResourceNotfoundException("Subscription wasn't found with id: " + subscriberId)))
 				.flatMap(subscriber -> subscriber.getPosts().stream()
 						.map(post -> new SubscriberPostsDto(post.getPost(), subscriber.getId())))
 				.collect(Collectors.toList());
-
 		return allPosts
 	}
 }
